@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/in-fire/!svn/ver/115/src/inFire/core
+END
+CIFBox.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/in-fire/!svn/ver/109/src/inFire/core/CIFBox.cpp
+END
+CIFBox.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/in-fire/!svn/ver/109/src/inFire/core/CIFBox.h
+END
+CIFParticleObj.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/in-fire/!svn/ver/115/src/inFire/core/CIFParticleObj.cpp
+END
+CIFWidget.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/in-fire/!svn/ver/115/src/inFire/core/CIFWidget.cpp
+END
+CIFParticleObj.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/in-fire/!svn/ver/114/src/inFire/core/CIFParticleObj.h
+END
+CIFWidget.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/in-fire/!svn/ver/113/src/inFire/core/CIFWidget.h
+END

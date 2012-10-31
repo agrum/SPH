@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/in-fire/!svn/ver/109/src/meltingDown/texture
+END
+CMaterialMngr.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/in-fire/!svn/ver/43/src/meltingDown/texture/CMaterialMngr.h
+END
+CTexture.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/in-fire/!svn/ver/109/src/meltingDown/texture/CTexture.h
+END
+CMaterial.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/in-fire/!svn/ver/43/src/meltingDown/texture/CMaterial.h
+END
+CMaterialMngr.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/in-fire/!svn/ver/19/src/meltingDown/texture/CMaterialMngr.cpp
+END
+CTexture.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/in-fire/!svn/ver/109/src/meltingDown/texture/CTexture.cpp
+END
+CMaterial.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/in-fire/!svn/ver/59/src/meltingDown/texture/CMaterial.cpp
+END

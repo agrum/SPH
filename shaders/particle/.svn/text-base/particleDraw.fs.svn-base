@@ -1,0 +1,51 @@
+#version 140
+
+in vec2 vTextureCoords;
+in float d;
+in float vIndex;
+in float vX;
+in float vY;
+
+uniform sampler2D smokeTexMap;
+uniform sampler2D fireTexMap;
+uniform sampler2D waterTexMap;
+uniform sampler1D dttTexMap;
+uniform sampler1D velocityTexMap;
+uniform int infrared;
+
+out vec4 fragColor;
+
+void main()
+{
+	float len = length((gl_PointCoord - vec2(0.5, 0.5))*2.0);
+	float PI = 3.14159265358979323846264;
+	
+	float temperature = texture(dttTexMap, vIndex).g;
+	float type = texture(dttTexMap, vIndex).b;
+	float speed = 100.0*length(texture(velocityTexMap,vIndex).xyz - vec3(0.5, 0.5, 0.5));
+	//fragColor = vec4(speed, speed, speed, 1)*(1.0 - len)*((abs(vX) < 0.1) ? 1.0 : 0.0);
+	float nuance = clamp((type - 0.3)*5.0, 0, 1);
+	
+	if(infrared == 0){
+		vec4 oil = texture2D( waterTexMap, (gl_PointCoord-0.5)*0.1 + vTextureCoords)*clamp((1.0-len)*5.0, 0, 1)*(len+0.5)*(len < 1.0 ? 1.0 : 0.0);
+		vec4 smoke = texture2D( smokeTexMap, (gl_PointCoord-0.5)*0.1 + vTextureCoords)*(sin((0.5 - len)*PI)/2.0 + 0.5)*(len < 1 ? 1.0 : 0.0)*2.0*(1.0 - texture(dttTexMap, vIndex).b)*nuance;
+		vec4 fire = texture2D( fireTexMap, (gl_PointCoord-0.5)*0.1 + vTextureCoords)*(1.0 - len)*(1.0 - nuance);
+		fire.b += fire.r*temperature*(1.0 - nuance);
+		fire.r -= fire.b*temperature*(1.0 - nuance);
+		
+		if(type == 0)
+			fragColor = oil;
+		else if(type > 0.3)
+			fragColor = smoke;
+		if(type != 0 && type < 0.5)
+			fragColor += fire;
+			
+		fragColor.rgb /= d;
+		fragColor.a = fragColor.a*(fragColor.r + fragColor.g + fragColor.b);
+		if(type != 0 && type < 0.5){
+			fragColor.rgb += fire.rgb;
+		}
+	}
+	else
+		fragColor = vec4(temperature+0.1,temperature+0.1,temperature+0.1, (1.0 - len)*(1.0 - (type - 0.5)*2.0));
+}

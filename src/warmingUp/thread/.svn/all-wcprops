@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/in-fire/!svn/ver/28/src/warmingUp/thread
+END
+CThread.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/in-fire/!svn/ver/28/src/warmingUp/thread/CThread.cpp
+END
+CComputer.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/in-fire/!svn/ver/4/src/warmingUp/thread/CComputer.cpp
+END
+CLinker.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/in-fire/!svn/ver/1/src/warmingUp/thread/CLinker.h
+END
+CPopper.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/in-fire/!svn/ver/8/src/warmingUp/thread/CPopper.cpp
+END
+CRoutine.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/in-fire/!svn/ver/1/src/warmingUp/thread/CRoutine.cpp
+END
+CThread.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/in-fire/!svn/ver/4/src/warmingUp/thread/CThread.h
+END
+CComputer.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/in-fire/!svn/ver/1/src/warmingUp/thread/CComputer.h
+END
+CDocker.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/in-fire/!svn/ver/4/src/warmingUp/thread/CDocker.cpp
+END
+CPopper.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/in-fire/!svn/ver/1/src/warmingUp/thread/CPopper.h
+END
+CRoutine.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/in-fire/!svn/ver/3/src/warmingUp/thread/CRoutine.h
+END
+CDocker.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/in-fire/!svn/ver/1/src/warmingUp/thread/CDocker.h
+END
+CLinker.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/in-fire/!svn/ver/4/src/warmingUp/thread/CLinker.cpp
+END

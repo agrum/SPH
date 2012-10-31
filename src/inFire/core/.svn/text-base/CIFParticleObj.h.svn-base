@@ -1,0 +1,75 @@
+/*
+ * CIFParticle.h
+ *
+ *  Created on: Jun 1, 2012
+ *      Author: agrum
+ */
+
+#ifndef CIFPARTICLEOBJ_H_
+#define CIFPARTICLEOBJ_H_
+
+#include "../../meltingDown/CMeltingDown.h"
+#include <QTime>
+#include <QQueue>
+
+class CIFParticleObj : public CObject {
+
+public:
+	CIFParticleObj(int);
+	~CIFParticleObj();
+
+	void add(const CMVP*, float, float);
+	void drop();
+	void ignite();
+	void infrared();
+	void expand() { m_expand = !m_expand; }
+	QList<QVector4D> getLights();
+
+    void iterate();
+	void computeDTT();
+	void updateVelocity();
+	void updatePosition();
+	void order(const QMatrix4x4&);
+
+	void drawSub();
+
+private:
+	int m_nbrParticle;
+	int m_worldSize;
+	int m_activeParticle;
+
+	QVector3D* m_particleList;
+
+	GLfloat* m_textures;
+	GLuint* m_indices;
+    GLuint* m_indexes;
+	GLuint m_fboId;
+
+	CTexture1D m_positionA;
+	CTexture1D m_positionB;
+	CTexture1D m_velocityA;
+	CTexture1D m_velocityB;
+	bool m_A;
+
+	CTexture3D m_bucket;
+	CTexture1D m_densTempTypeA;
+	CTexture1D m_densTempTypeB;
+	CTexture1D m_physical;
+	CTexture2D m_spriteF;
+	CTexture2D m_spriteW;
+	CTexture2D m_spriteS;
+
+	CProgram m_dttComputation;
+	CProgram m_velocityUpdate;
+	CProgram m_positionUpdate;
+	CProgram m_particleDraw;
+
+	QVector2D* m_textCoords;
+	QQueue<QList<QVector3D> > m_pendingParticles;
+	int m_pendingIgnites;
+
+	bool m_expand;
+	bool m_infrared;
+};
+
+#endif /* CIFPARTICLEOBJ_H_ */

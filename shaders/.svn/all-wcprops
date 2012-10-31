@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/in-fire/!svn/ver/115/shaders
+END
+opaque.fs
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/in-fire/!svn/ver/109/shaders/opaque.fs
+END
+opaque.vs
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/in-fire/!svn/ver/44/shaders/opaque.vs
+END
+illumination.fs
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/in-fire/!svn/ver/109/shaders/illumination.fs
+END
+illumination.vs
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/in-fire/!svn/ver/109/shaders/illumination.vs
+END
