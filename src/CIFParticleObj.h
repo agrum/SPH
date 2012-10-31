@@ -8,7 +8,7 @@
 #ifndef CIFPARTICLEOBJ_H_
 #define CIFPARTICLEOBJ_H_
 
-#include "../../meltingDown/CMeltingDown.h"
+#include "lemonGL.h"
 #include <QTime>
 #include <QQueue>
 

@@ -84,11 +84,11 @@ m_gravity(0)
 
 	for(int i = 0; i < programList.size(); i++){
 		programList[i]->use();
-		m_bucket.sendToProgram();
-		m_density.sendToProgram();
-		m_position.sendToProgram();
-		m_velocity.sendToProgram();
-		m_physical.sendToProgram();
+		m_bucket.send();
+		m_density.send();
+		m_position.send();
+		m_velocity.send();
+		m_physical.send();
 		CProgram::current()->sendUniform1i("worldSize", m_worldSize);
 		CProgram::current()->sendUniform1f("nbrParticle", m_nbrParticle);
 	}
@@ -100,7 +100,7 @@ CIFParticleObj::~CIFParticleObj(){
 
 void CIFParticleObj::drop(){
 	//QVector3D ref(qrand()%700 + 150, qrand()%700 + 150, qrand()%350 + 500);
-	QVector3D ref(500, 500, 850);
+	QVector3D ref(500, 500, 800);
 	QVector3D velocity(0.5,0.5,0.5);
 	ref /= 1000.0;
 
@@ -280,7 +280,7 @@ void CIFParticleObj::drawSub(){
 	glVertexAttribPointer(indexLoc , 1, GL_UNSIGNED_INT, GL_FALSE, 0, m_indexes);
 
 	//Send textures
-	m_position.sendToProgram();
+	m_position.send();
 	CProgram::current()->sendUniform1f("nbrParticle", m_nbrParticle);
 	CProgram::current()->sendUniform1i("worldSize", m_worldSize);
 

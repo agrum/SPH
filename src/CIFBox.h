@@ -8,7 +8,7 @@
 #ifndef CIFBOX_H_
 #define CIFBOX_H_
 
-#include "../../meltingDown/CMeltingDown.h"
+#include "lemonGL.h"
 
 class CIFBox : public CMesh {
 

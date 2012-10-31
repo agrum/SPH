@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 
-	//CProject bleh("configuration/inFire.conf");
+	CLog log("watch.log", CLog::ALL);
 	CIFWidget bleh;
 
 	return a.exec();
