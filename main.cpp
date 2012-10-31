@@ -1,6 +1,6 @@
 #include <QtCore>
 #include <QApplication>
-#include "src/inFire/CInFire.h"
+#include "src/CIFWidget.h"
 
 #define SIZE 30
 #define NBR_ENTITY 15000

@@ -10,8 +10,8 @@
 
 #include "CIFParticleObj.h"
 #include "CIFBox.h"
-#include "../../meltingDown/CMeltingDown.h"
 
+#include "lemonGL.h"
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QTime>
