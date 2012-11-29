@@ -92,6 +92,12 @@ m_gravity(0)
 		CProgram::current()->sendUniform1i("worldSize", m_worldSize);
 		CProgram::current()->sendUniform1f("nbrParticle", m_nbrParticle);
 	}
+
+	//Fix textures
+	m_position.fix();
+	m_velocity.fix();
+	m_density.fix();
+	m_bucket.fix();
 }
 
 CIFParticleObj::~CIFParticleObj(){

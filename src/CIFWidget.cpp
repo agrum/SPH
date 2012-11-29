@@ -39,13 +39,7 @@ CIFWidget::~CIFWidget(){
 }
 
 void CIFWidget::initializeGL(){
-	glewExperimental = GL_TRUE;
-
-	GLenum error = glewInit();
-	if(error != GLEW_OK){
-		QMessageBox::critical(this, trUtf8("Erreur"), trUtf8("Echec de l'initialization de GLEW: %1").arg(reinterpret_cast<const char *>(glewGetErrorString(error))));
-		exit(-1);
-	}
+	lemonGL::init();
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_POINT_SMOOTH);
@@ -57,7 +51,7 @@ void CIFWidget::initializeGL(){
 	CVA::create(100000);
 	CMeshMngr::add("meshes/sphere.obj");
 	CMeshMngr::add("meshes/cube.obj");
-	m_box = new CIFBox(*(CMeshMngr::get("pCube")));
+	m_box = new CIFBox(CMeshMngr::get("pCube"));
 	m_box->translate(-0.5, -0.5, -0.5);
 	m_object.push_back(m_box);
 	m_particles = new CIFParticleObj(worldSize);
