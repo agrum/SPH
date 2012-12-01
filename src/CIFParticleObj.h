@@ -50,10 +50,10 @@ private:
 	CTexture3D m_bucket;
 	CTexture1D m_physical;
 
-	CProgram m_densityComputation;
-	CProgram m_velocityUpdate;
-	CProgram m_positionUpdate;
-	CProgram m_particleDraw;
+	GLuint m_densityComputation;
+	GLuint m_velocityUpdate;
+	GLuint m_positionUpdate;
+	GLuint m_particleDraw;
 
 	QVector2D* m_textCoords;
 	QQueue<QList<QVector3D> > m_pendingParticles;

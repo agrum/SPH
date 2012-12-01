@@ -59,9 +59,9 @@ void CIFWidget::initializeGL(){
 	m_particles->scale( 1.0/worldSize, 1.0/worldSize, 1.0/worldSize );
 
 	//Shaders
-	m_opaqueProgram.initProgram( "shaders/opaque" );
-	m_illuminationProgram.initProgram( "shaders/illumination" );
-	m_particleDrawProgram.initProgram("shaders/particle/particleDraw");
+	m_opaqueProgram = CShaderInterface::add("shaders/opaque");
+	m_illuminationProgram = CShaderInterface::add("shaders/illumination");
+	m_particleDrawProgram = CShaderInterface::add("shaders/particle/particleDraw");
 
 	//Light
 	CLight* light = new CLight();
@@ -84,7 +84,7 @@ void CIFWidget::paintGL()
 
 	//Shadow maps generation
 	m_box->cull(m_light[0]->viewMatrix());
-	m_opaqueProgram.use();
+	CShaderInterface::use(m_opaqueProgram);
 	CLight::bindFB();
 	glEnable(GL_DEPTH_TEST);
 	glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
@@ -99,7 +99,7 @@ void CIFWidget::paintGL()
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
 	m_box->cull(m_camera->viewMatrix());
-	m_opaqueProgram.use();
+	CShaderInterface::use(m_opaqueProgram);
 	for(int a = 0; a < m_object.size(); a++)
 		m_object[a]->draw(m_camera);
 
@@ -108,24 +108,24 @@ void CIFWidget::paintGL()
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_ONE, GL_ONE);
-	m_illuminationProgram.use();
+	CShaderInterface::use(m_illuminationProgram);
 	for(int a = 0; a < m_object.size(); a++){
 		m_object[a]->draw(m_camera, &m_light);
 	}
 	glDepthMask(GL_TRUE);
 
 	//Particles
-	m_particleDrawProgram.use();
+	CShaderInterface::use(m_particleDrawProgram);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
-	m_particles->draw(m_camera, NULL, QVector2D(0, 0));
+	m_particles->draw(m_camera);
 	glDisable(GL_BLEND);
 
 	//To next step
 	m_particles->iterate();
 
 	//Time
-	qDebug() << "end" << m_time.elapsed() << "ms";
+        //qDebug() << "end" << m_time.elapsed() << "ms";
 	m_time.start();
 }
 

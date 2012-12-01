@@ -1,9 +1,20 @@
 /*
- * CIFWidget.h
- *
- *  Created on: May 18, 2012
- *      Author: agrum
- */
+	Copyright 2012 Thomas Le Guerroué-Drévillon
+	This file is part of lemonGL.
+
+	lemonGL is free software: you can redistribute it and/or modify
+	it under the terms of the GNU Lesser General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	lemonGL is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU Lesser General Public License for more details.
+
+	You should have received a copy of the GNU Lesser General Public License
+	along with lemonGL.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #ifndef CIFWIDGET_H_
 #define CIFWIDGET_H_
@@ -44,9 +55,9 @@ protected:
 	QList<CLight*> m_light;
 	QList<CObject* > m_object;
 
-	CProgram m_opaqueProgram;
-	CProgram m_illuminationProgram;
-	CProgram m_particleDrawProgram;
+	GLuint m_opaqueProgram;
+	GLuint m_illuminationProgram;
+	GLuint m_particleDrawProgram;
 
 	CIFBox* m_box;
 	CIFParticleObj* m_particles;

@@ -23,9 +23,9 @@ m_textCoords(new QVector2D[m_nbrParticle]),
 m_gravity(0)
 {
 	//Shaders
-	m_densityComputation.initProgram("shaders/particle/dttComputation");
-	m_velocityUpdate.initProgram("shaders/particle/velocityUpdate");
-	m_positionUpdate.initProgram("shaders/particle/positionUpdate");
+	m_densityComputation = CShaderInterface::add("shaders/particle/dttComputation");
+	m_velocityUpdate = CShaderInterface::add("shaders/particle/velocityUpdate");
+	m_positionUpdate = CShaderInterface::add("shaders/particle/positionUpdate");
 
 	//Texture sizes
 	m_bucket.setWidth(m_worldSize);
@@ -77,20 +77,20 @@ m_gravity(0)
 	m_density.setData(densities);
 
 	//Send textures and variables
-	QList<CProgram*> programList;
-	programList.append(&m_densityComputation);
-	programList.append(&m_velocityUpdate);
-	programList.append(&m_positionUpdate);
+	QList<GLuint> programList;
+	programList.append(m_densityComputation);
+	programList.append(m_velocityUpdate);
+	programList.append(m_positionUpdate);
 
 	for(int i = 0; i < programList.size(); i++){
-		programList[i]->use();
+		CShaderInterface::use(programList[i]);
 		m_bucket.send();
 		m_density.send();
 		m_position.send();
 		m_velocity.send();
 		m_physical.send();
-		CProgram::current()->sendUniform1i("worldSize", m_worldSize);
-		CProgram::current()->sendUniform1f("nbrParticle", m_nbrParticle);
+		CShaderInterface::sendUniform1i("worldSize", m_worldSize);
+		CShaderInterface::sendUniform1f("nbrParticle", m_nbrParticle);
 	}
 
 	//Fix textures
@@ -145,10 +145,10 @@ void CIFParticleObj::computeDTT(){
 	glViewport(0, 0, m_nbrParticle, 1);
 
 	//Program
-	m_densityComputation.use();
+	CShaderInterface::use(m_densityComputation);
 
 	//Get locations
-	GLuint indexLoc = glGetAttribLocation(CProgram::currentId(),"index");
+	GLuint indexLoc = glGetAttribLocation(m_densityComputation,"index");
 	glVertexAttribPointer(indexLoc , 1, GL_UNSIGNED_INT, GL_FALSE, 0, m_indexes);
 
 	//Draw
@@ -163,10 +163,10 @@ void CIFParticleObj::updateVelocity(){
 	glViewport(0, 0, m_nbrParticle, 1);
 
 	//Program
-	m_velocityUpdate.use();
+	CShaderInterface::use(m_velocityUpdate);
 
 	//Get locations
-	GLuint indexLoc = glGetAttribLocation(CProgram::currentId(),"index");
+	GLuint indexLoc = glGetAttribLocation(m_velocityUpdate,"index");
 	glVertexAttribPointer(indexLoc , 1, GL_UNSIGNED_INT, GL_FALSE, 0, m_indexes);
 
 	//Draw
@@ -174,16 +174,17 @@ void CIFParticleObj::updateVelocity(){
 	glDrawElements( GL_POINTS, m_activeParticle, GL_UNSIGNED_INT, m_indexes );
 	glDisableVertexAttribArray(indexLoc);
 }
+
 void CIFParticleObj::updatePosition(){
 	//Clear
 	glFramebufferTexture1D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_1D, m_position.id(), 0);
 	glViewport(0, 0, m_nbrParticle, 1);
 
 	//Program
-	m_positionUpdate.use();
+	CShaderInterface::use(m_positionUpdate);
 
 	//Get locations
-	GLuint indexLoc = glGetAttribLocation(CProgram::currentId(),"index");
+	GLuint indexLoc = glGetAttribLocation(m_positionUpdate,"index");
 	glVertexAttribPointer(indexLoc , 1, GL_UNSIGNED_INT, GL_FALSE, 0, m_indexes);
 
 	//Draw
@@ -280,15 +281,15 @@ void CIFParticleObj::order(const QMatrix4x4& p_mvp){
 
 void CIFParticleObj::drawSub(){
 	//Get locations
-	GLuint texLoc = glGetAttribLocation(CProgram::currentId(),"textureCoords");
-	GLuint indexLoc = glGetAttribLocation(CProgram::currentId(),"index");
+	GLuint texLoc = glGetAttribLocation(CShaderInterface::current(),"textureCoords");
+	GLuint indexLoc = glGetAttribLocation(CShaderInterface::current(),"index");
 	glVertexAttribPointer(texLoc , 2, GL_FLOAT, GL_FALSE, 0, m_textures );
 	glVertexAttribPointer(indexLoc , 1, GL_UNSIGNED_INT, GL_FALSE, 0, m_indexes);
 
 	//Send textures
 	m_position.send();
-	CProgram::current()->sendUniform1f("nbrParticle", m_nbrParticle);
-	CProgram::current()->sendUniform1i("worldSize", m_worldSize);
+	CShaderInterface::sendUniform1f("nbrParticle", m_nbrParticle);
+	CShaderInterface::sendUniform1i("worldSize", m_worldSize);
 
 	//Draw
 	glEnableVertexAttribArray(indexLoc);
