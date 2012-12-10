@@ -108,7 +108,7 @@ void CIFWidget::paintGL()
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_ONE, GL_ONE);
-	CShaderInterface::use(m_illuminationProgram);
+	CShaderInterface::use(lemonGL::m_illuminationProgram);
 	for(int a = 0; a < m_object.size(); a++){
 		m_object[a]->draw(m_camera, &m_light);
 	}

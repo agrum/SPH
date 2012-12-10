@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 
-	CLog::init("watch.log", CLog::ALL);
+	CLog::init("watch.log", CLog::ERROR | CLog::WARNING);
 	CIFWidget bleh;
 
 	return a.exec();
