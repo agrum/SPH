@@ -23,6 +23,7 @@
 #include "CIFBox.h"
 
 #include "lemonGL.h"
+#include "pomelog.h"
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QTime>

@@ -4,7 +4,8 @@ QT += core \
     opengl \
     xml
 INCLUDEPATH += /usr/include/GL \
-    /home/agrum/Workspace/lemonGL/include
+	/home/agrum/Workspace/pomelog/include \
+	/home/agrum/Workspace/lemonGL/include
 LIBS += -L/usr/include/GL \
 	-L/home/agrum/Workspace/lemonGL/lib \
 	-llemonGL \
